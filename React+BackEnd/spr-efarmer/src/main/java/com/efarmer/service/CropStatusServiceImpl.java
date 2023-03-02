@@ -36,4 +36,16 @@ public class CropStatusServiceImpl implements CropStatusService
 		return cropStatusDao.changeStatus(id,status);
 
 	}
+
+	@Override
+	public Integer updateStatus(int id, String status) {
+		// TODO Auto-generated method stub
+		return cropStatusDao.updateStatus(id, status);
+	}
+
+	@Override
+	public List<CropStatus> getAllCrops(String status) 
+	{
+		return cropStatusDao.getAllCrop(status);
+	}
 }
