@@ -1,0 +1,39 @@
+package com.efarmer.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.efarmer.dao.CropStatusDao;
+import com.efarmer.model.CropStatus;
+
+@Service
+public class CropStatusServiceImpl implements CropStatusService
+{
+
+	@Autowired
+	private CropStatusDao cropStatusDao;
+	
+	@Override
+	public void insertCrop(CropStatus crop) 
+	{
+		crop.setStatus("Pending");
+		cropStatusDao.save(crop);
+	}
+
+	@Override
+	public List<CropStatus> getAllCropsById(int farmerID) 
+	{
+		// TODO Auto-generated method stub
+		return cropStatusDao.getAllCrops(farmerID,"CANCELLED");
+	}
+
+	@Override
+	public Integer cancelCS(int id,String status) 
+	{
+		// TODO Auto-generated method stub
+		return cropStatusDao.changeStatus(id,status);
+
+	}
+}
