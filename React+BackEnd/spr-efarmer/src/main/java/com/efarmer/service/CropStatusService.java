@@ -11,4 +11,5 @@ public interface CropStatusService
 	Integer cancelCS(int id,String status);
 	Integer updateStatus(int id,String status);
 	List<CropStatus> getAllCrops(String status);
+	List<CropStatus> menuPageCrops(String status);
 }
