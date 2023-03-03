@@ -42,4 +42,17 @@ public class CropStatusController
 	{
 		return cropStatusService.cancelCS(id,"Cancelled");
 	}
+
+	@PutMapping(value = {"/updateStatusByAdmin/{oid}/{status}"})
+	public Integer updateStatus(@PathVariable("oid") int id,@PathVariable("status") String status)
+	{
+		System.out.println(status);
+		return cropStatusService.updateStatus(id,status);
+	}
+	
+	@GetMapping(value = {"/getAllCrops"})
+	public List<CropStatus> getAllCrops()
+	{
+		return cropStatusService.getAllCrops("Pending");
+	}
 }
