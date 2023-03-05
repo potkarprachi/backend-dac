@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,10 +41,18 @@ public class LoginController
 		
 		return loginService.check(user);
 	}
+	
 	@GetMapping(value= {"/getAccDetails/{id}"})
 	public Login getAccDetailsId(@PathVariable int id)
 	{
 		return loginService.getDetails(id);
+	}
+	
+	@PutMapping(value= {"/updateAccDetails"})
+	public Login getAccDetailsId(@RequestBody Login user)
+	{
+		System.out.println(user);
+		return loginService.update(user);
 	}
 }
 
