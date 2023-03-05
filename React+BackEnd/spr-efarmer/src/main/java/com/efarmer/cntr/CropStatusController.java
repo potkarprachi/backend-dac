@@ -55,4 +55,10 @@ public class CropStatusController
 	{
 		return cropStatusService.getAllCrops("Pending");
 	}
+	
+	@GetMapping(value = {"/menuPage"})
+	public List<CropStatus> getToSellCrops()
+	{
+		return cropStatusService.getAllCrops("Accepted");
+	}
 }

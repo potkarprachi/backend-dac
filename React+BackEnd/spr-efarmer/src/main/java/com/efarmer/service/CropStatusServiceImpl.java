@@ -48,4 +48,10 @@ public class CropStatusServiceImpl implements CropStatusService
 	{
 		return cropStatusDao.getAllCrop(status);
 	}
+
+	@Override
+	public List<CropStatus> menuPageCrops(String status) {
+		
+		return cropStatusDao.allowedToSell(status);
+	}
 }

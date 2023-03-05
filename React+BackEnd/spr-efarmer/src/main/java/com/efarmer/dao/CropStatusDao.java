@@ -21,6 +21,9 @@ public interface CropStatusDao extends JpaRepository<CropStatus, Integer>, CrudR
 	
 	@Query(value = "SELECT * FROM crop_status WHERE status LIKE :a", nativeQuery = true)
 	List<CropStatus> getAllCrop(@Param(value="a") String a);
+	
+	@Query(value = "SELECT * FROM crop_status WHERE status LIKE :a", nativeQuery = true)
+	List<CropStatus> allowedToSell(@Param(value="a") String a);
 
 	
 	@Transactional
