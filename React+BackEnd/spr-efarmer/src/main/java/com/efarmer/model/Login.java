@@ -1,12 +1,18 @@
 package com.efarmer.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="login")
 public class Login 
 {
 	@Id
@@ -19,8 +25,8 @@ public class Login
 	String phone;
 	@Column(name="adhar",length=12)
 	String adhar;
-	@Column(name="district",length=20)
-	String district;
+	@Column(name="district")
+	int district;
 	@Column(name="city",length=20)
 	String city;
 	@Column(name="password",length=16)
@@ -31,10 +37,48 @@ public class Login
 	String email;
 	@Column(name="pincode")
 	String pincode;
+	@ManyToOne
+	@JoinColumn(name="districtId")
+	private District districts;
+	/*
+	 {
+    "fullame":"Akshay",
+    "phone":"8108266719",
+    "adhar":"123456789123",
+    "district":"Satara",
+    "city":"Shirwal",
+    "password":"Akshay@16",
+    "role":"farmer",
+    "email":"akshayatwwe@gmail.com",
+    "pincode":400705
+}
+	 */
 	
 	
-	
-	
+	@Override
+	public String toString() {
+		return "Login [ID=" + ID + ", fullname=" + fullname + ", phone=" + phone + ", adhar=" + adhar + ", district="
+				+ district + ", city=" + city + ", password=" + password + ", role=" + role + ", email=" + email
+				+ ", pincode=" + pincode + ", districts=" + districts + "]";
+	}
+
+
+
+
+	public District getDistricts() {
+		return districts;
+	}
+
+
+
+
+	public void setDistricts(District districts) {
+		this.districts = districts;
+	}
+
+
+
+
 	public String getFullname() {
 		return fullname;
 	}
@@ -77,23 +121,37 @@ public class Login
 
 
 
-	public String getDistrict() {
+//	public String getDistrict() {
+//		return district;
+//	}
+//
+//
+//
+//
+//	public void setDistrict(String district) {
+//		this.district = district;
+//	}
+
+
+	public int getDistrict() {
 		return district;
 	}
 
 
 
 
-	public void setDistrict(String district) {
+	public void setDistrict(int district) {
 		this.district = district;
 	}
-
-
-
 
 	public String getCity() {
 		return city;
 	}
+
+
+
+
+	
 
 
 
