@@ -15,6 +15,9 @@ import javax.persistence.Table;
 @Table(name="login")
 public class Login 
 {
+
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID")
@@ -60,6 +63,9 @@ public class Login
 		return "Login [ID=" + ID + ", fullname=" + fullname + ", phone=" + phone + ", adhar=" + adhar + ", district="
 				+ district + ", city=" + city + ", password=" + password + ", role=" + role + ", email=" + email
 				+ ", pincode=" + pincode + ", districts=" + districts + "]";
+	
+	public int getID() {
+		return ID;
 	}
 
 
@@ -67,6 +73,9 @@ public class Login
 
 	public District getDistricts() {
 		return districts;
+
+	public void setID(int iD) {
+		ID = iD;
 	}
 
 
@@ -79,10 +88,10 @@ public class Login
 
 
 
+
 	public String getFullname() {
 		return fullname;
 	}
-
 
 
 
@@ -92,11 +101,9 @@ public class Login
 
 
 
-
 	public String getPhone() {
 		return phone;
 	}
-
 
 
 
@@ -106,11 +113,9 @@ public class Login
 
 
 
-
 	public String getAdhar() {
 		return adhar;
 	}
-
 
 
 
@@ -134,6 +139,7 @@ public class Login
 
 
 	public int getDistrict() {
+	public String getDistrict() {
 		return district;
 	}
 
@@ -144,15 +150,15 @@ public class Login
 		this.district = district;
 	}
 
-	public String getCity() {
-		return city;
+	public void setDistrict(String district) {
+		this.district = district;
 	}
 
 
 
-
-	
-
+	public String getCity() {
+		return city;
+	}
 
 
 
@@ -162,11 +168,9 @@ public class Login
 
 
 
-
 	public String getPassword() {
 		return password;
 	}
-
 
 
 
@@ -176,11 +180,9 @@ public class Login
 
 
 
-
 	public String getRole() {
 		return role;
 	}
-
 
 
 
@@ -190,11 +192,9 @@ public class Login
 
 
 
-
 	public String getEmail() {
 		return email;
 	}
-
 
 
 
@@ -204,11 +204,9 @@ public class Login
 
 
 
-
 	public String getPincode() {
 		return pincode;
 	}
-
 
 
 
@@ -218,23 +216,12 @@ public class Login
 
 
 
-
-	public int getID() {
-		return ID;
+	@Override
+	public String toString() {
+		return "Login [ID=" + ID + ", fullname=" + fullname + ", phone=" + phone + ", adhar=" + adhar + ", district="
+				+ district + ", city=" + city + ", password=" + password + ", role=" + role + ", email=" + email
+				+ ", pincode=" + pincode + "]";
 	}
-	
 	
 }
 
-
-/*
- 	{
-    "farmerName":"Akshay",
-    "farmerMobNo":"8108266719",
-    "farmerAadharNo":"123456789123",
-    "farmerDistrict":"Satara",
-    "farmerCity":"Shirwal",
-    "farmerPassword":"Akshay@16",
-    "farmerRole":"farmer"
-	}
- */
