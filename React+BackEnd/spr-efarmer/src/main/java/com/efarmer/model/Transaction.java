@@ -1,8 +1,5 @@
 package com.efarmer.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 import java.util.Calendar;
 
 import javax.persistence.Column;
@@ -16,49 +13,37 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+
 @Entity
 @Table(name="transactions")
 public class Transaction 
 {
 	@Id
-	@GeneratedValue(strategy =GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	int transactionId;
-	@Column(name = "amount")
+	@Column(name="amount")
 	float price;
 	@CreationTimestamp
 	@Temporal(TemporalType.DATE)
-	@Column(name = "date")
+	@Column(name="date")
 	Calendar date;
-	@Column(name = "status",length = 10)
+	@Column(name="status",length=10)
 	String status;
-	@Column(name = "farmerId")
+	@Column(name="farmerId")
 	int farmerId;
-	@Column(name = "customerId")
+	@Column(name="customerId")
 	int customerid;
-	@Column(name = "crop")
+	@Column(name="crop")
 	int cropID;
-	@Column(name = "weight")
+	@Column(name="weight")
 	float weight;
 	
-
+	
 	public float getPrice() {
 		return price;
 	}
 	public void setPrice(float price) {
 		this.price = price;
-	}
-	public int getCustomerid() {
-		return customerid;
-	}
-	public void setCustomerid(int customerid) {
-		this.customerid = customerid;
-	}
-	
-	public int getCropID() {
-		return cropID;
-	}
-	public void setCropID(int cropID) {
-		this.cropID = cropID;
 	}
 	public Calendar getDate() {
 		return date;
@@ -78,8 +63,18 @@ public class Transaction
 	public void setFarmerId(int farmerId) {
 		this.farmerId = farmerId;
 	}
-
-
+	public int getCustomerid() {
+		return customerid;
+	}
+	public void setCustomerid(int customerid) {
+		this.customerid = customerid;
+	}
+	public int getCropID() {
+		return cropID;
+	}
+	public void setCropID(int cropID) {
+		this.cropID = cropID;
+	}
 	public float getWeight() {
 		return weight;
 	}
@@ -89,4 +84,6 @@ public class Transaction
 	public int getTransactionId() {
 		return transactionId;
 	}
+	
+	
 }

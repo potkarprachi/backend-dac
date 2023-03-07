@@ -1,4 +1,6 @@
 package com.efarmer.cntr;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,34 +20,40 @@ import com.efarmer.service.TransactionService;
 public class TransactionController 
 {
 	@Autowired
-	private TransactionService trans;
+	private TransactionService transactionService;
 	@Autowired
-	private CropStatusService cs;
+	private CropStatusService cropStatusService;
 	
 	@PostMapping(value = {"/addTransaction"})
-	public String addTransaction(@RequestBody Transaction tr)
+	public String addTranaction(@RequestBody Transaction t)
 	{
-		cs.updateCustomer(tr.getCropID(),tr.getCustomerid());
-		trans.insert(tr);
+		cropStatusService.updateCustomer(t.getCropID(), t.getCustomerid());
+		transactionService.insert(t);
 		return "success";
 	}
 	
-	
-	@GetMapping(value = {"/getAllTransaction"})
-	public List<Transaction> getAll()
+	@GetMapping(value = {"/getAllTransactions1"})
+	public List<Transaction> getAllTrans()
 	{
-		return trans.fetchAll();
+		System.out.println("Inside Get All");
+		List<Transaction> list=new ArrayList<Transaction>();
+		list= transactionService.fetchAll();
+		for(Transaction t : list)
+		{
+			System.out.println(t.getCustomerid());
+		}
+		return list;
 	}
 	
 	@GetMapping(value = {"/getAllTransactionFarmer/{id}"})
 	public List<Transaction> getAllId(@PathVariable("id") int id)
 	{
-		return trans.fetchById(id);
+		return transactionService.fetchForFarmer(id);
 	}
 	
 	@GetMapping(value = {"/getAllTransactionCust/{id}"})
 	public List<Transaction> getAllIdCust(@PathVariable("id") int id)
 	{
-		return trans.fetchByIdCust(id);
+		return transactionService.fetchForCustomer(id);
 	}
 }
