@@ -19,7 +19,7 @@ public interface CropStatusDao extends JpaRepository<CropStatus, Integer>, CrudR
 	@Query(value = "SELECT * FROM crop_status WHERE farmer_id= :id  AND status NOT LIKE :a", nativeQuery = true)
 	List<CropStatus> getAllCrops(@Param(value="id") int id,@Param(value="a") String a);
 	
-	@Query(value = "SELECT * FROM crop_status WHERE status LIKE :a", nativeQuery = true)
+	@Query(value = "SELECT * FROM crop_status WHERE status LIKE :a and customer_id=0", nativeQuery = true)
 	List<CropStatus> getAllCrop(@Param(value="a") String a);
 	
 	@Query(value = "SELECT * FROM crop_status WHERE status LIKE :a", nativeQuery = true)
@@ -35,5 +35,10 @@ public interface CropStatusDao extends JpaRepository<CropStatus, Integer>, CrudR
 	@Modifying
 	@Query(value = "UPDATE crop_status SET status=:q WHERE cropid=:id", nativeQuery = true)
 	Integer updateStatus(@Param(value="id") int id,@Param(value="q") String q);
+	
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE crop_status SET customer_id=:q WHERE cropid=:id", nativeQuery = true)
+	void updateCustomer(@Param(value="id") int cropid,@Param(value="q") int customerid);
 	
 }

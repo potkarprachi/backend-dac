@@ -54,4 +54,11 @@ public class CropStatusServiceImpl implements CropStatusService
 		
 		return cropStatusDao.allowedToSell(status);
 	}
+
+	@Override
+	public void updateCustomer(int cropID, int customerid)
+	{
+		cropStatusDao.updateCustomer(cropID, customerid);
+		
+	}
 }
