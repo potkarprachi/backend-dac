@@ -31,7 +31,7 @@ public class DistrictController
 	@GetMapping(value = {"/getDistrict"})
 	public List<District> getDistrictdata()
 	{
-		
+		System.out.println("Inside District");
 		return districtService.getDistricts();
 	}
 }
