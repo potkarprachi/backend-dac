@@ -34,6 +34,13 @@ public class LoginServiceImpl implements LoginService
 		Login cUser=loginDao.getInfo(id);
 		return cUser;
 	}
+	@Override
+	public Login update(Login user) 
+	{
+		Login cUser=loginDao.save(user);
+		return cUser;
+		
+	}
 	
 	
 
