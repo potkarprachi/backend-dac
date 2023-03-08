@@ -1,10 +1,14 @@
 package com.efarmer.cntr;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +28,21 @@ public class ContactController{
 		this.contactservice = contactservice;
 	}
      
-     @PostMapping("/query")
+     @PostMapping("/userquery")
      public String createPost(@RequestBody contactDto contactdto)
      {
     	  contactservice.createQuery(contactdto);
          return "Success";
      }
+     
+     @GetMapping("/getqueries")
+     public List<contactDto> GetPost()
+     {
+    	 List<contactDto> cd  = new ArrayList<>();
+         cd = contactservice.GetPost();
+    	 return cd;
+     }
+     
      
      
      

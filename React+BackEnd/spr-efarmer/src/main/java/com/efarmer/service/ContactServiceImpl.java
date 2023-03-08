@@ -1,5 +1,9 @@
 package com.efarmer.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +22,7 @@ public class ContactServiceImpl implements ContactService{
 	}
 
 	@Override
-	public Object createQuery(contactDto contactdto) {
+	public contactDto createQuery(contactDto contactdto) {
           System.out.println(contactdto.getContact());
 		 ContactUs contact1 = mapToEntity(contactdto);
 		 ContactUs cu = contactdao.save(contact1);
@@ -32,6 +36,7 @@ public class ContactServiceImpl implements ContactService{
         cd.setContact(contact.getContact());
         cd.setName(contact.getName());
         cd.setQuery(contact.getQuery());
+        cd.setEmail(contact.getEmail());
         return cd;
     }
     public ContactUs mapToEntity(contactDto contactdto)
@@ -45,5 +50,11 @@ public class ContactServiceImpl implements ContactService{
         return contact;
 
     }
+
+	@Override
+	public List<contactDto> GetPost() {
+		List<ContactUs> cs = contactdao.findAll();
+		return cs.stream().map(contact->mapToDTO(contact)).collect(Collectors.toList());
+		}
 
 }
