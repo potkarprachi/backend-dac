@@ -13,9 +13,12 @@ import com.efarmer.model.Transaction;
 @Repository
 public interface TransactionDao extends CrudRepository<Transaction,Integer>,JpaRepository<Transaction, Integer>
 {
-	@Query(value="SELECT * FROM transactions WHERE farmer_id=:q",nativeQuery = true)
+	@Query(value="SELECT * FROM transactions WHERE farmer_id=:q ORDER BY date desc",nativeQuery = true)
 	List<Transaction> allFarmerTans(@Param(value="q") int id);
 	
-	@Query(value="SELECT * FROM transactions WHERE customer_id=:q",nativeQuery = true)
+	@Query(value="SELECT * FROM transactions WHERE customer_id=:q ORDER BY date desc",nativeQuery = true)
 	List<Transaction> allCustomerTans(@Param(value="q") int id);
+	
+	
+	
 }
