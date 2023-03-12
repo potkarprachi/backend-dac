@@ -27,7 +27,7 @@ public class TransactionController
 	@PostMapping(value = {"/addTransaction"})
 	public String addTranaction(@RequestBody Transaction t)
 	{
-		cropStatusService.updateCustomer(t.getCropID(), t.getCustomerid());
+		cropStatusService.updateCustomer(t.getCropID(), t.getCustomerNo());
 		transactionService.insert(t);
 		return "success";
 	}
@@ -40,7 +40,8 @@ public class TransactionController
 		list= transactionService.fetchAll();
 		for(Transaction t : list)
 		{
-			System.out.println(t.getCustomerid());
+			System.out.println(t.getCustomerNo());
+			System.out.println(t.getDate());
 		}
 		return list;
 	}

@@ -17,8 +17,8 @@ public class TransactionServiceImpl implements TransactionService
 	@Override
 	public void insert(Transaction t) 
 	{
+		t.setStatus("Paid");
 		transactionDao.save(t);
-		
 	}
 
 	@Override
