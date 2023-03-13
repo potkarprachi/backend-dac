@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.efarmer.PDto.LoginDto;
 import com.efarmer.model.Login;
 import com.efarmer.service.LoginService;
 
@@ -38,8 +39,9 @@ public class LoginController
 	@PostMapping(value= {"/userLogin"})
 	public Login userLogin(@RequestBody Login user)
 	{
-		
-		return loginService.check(user);
+		Login user1=loginService.check(user);
+		System.out.println(user1.getEmail()+" : "+user1.getPassword());
+		return user1;
 	}
 	
 	@GetMapping(value= {"/getAccDetails/{id}"})
@@ -57,5 +59,3 @@ public class LoginController
 }
 
 
-//prachi
-//akshay1

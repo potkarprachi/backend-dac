@@ -1,46 +1,21 @@
-package com.efarmer.model;
+package com.efarmer.PDto;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="login")
-public class Login 
+public class LoginDto 
 {
 
 
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
 	int ID;
-	@Column(name="fullname",length=50)
 	String fullname;
-	@Column(name="phone",length=10)
 	String phone;
-	@Column(name="adhar",length=12)
 	String adhar;
-	@Column(name="city",length=20)
 	String city;
-	@Column(name="password",length=1000)
 	String password;
-	@Column(name="role",length=10)
 	String role;
-	@Column(name="email")
 	String email;
-	@Column(name="pincode")
 	String pincode;
-	@ManyToOne
-	@JoinColumn(name="districtId")
-	private District districts;
+	private DistrictDto districts;
 	
 	public int getID() {
 		return ID;
@@ -96,10 +71,10 @@ public class Login
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
-	public District getDistricts() {
+	public DistrictDto getDistricts() {
 		return districts;
 	}
-	public void setDistricts(District districts) {
+	public void setDistricts(DistrictDto districts) {
 		this.districts = districts;
 	}
 	@Override

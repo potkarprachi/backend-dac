@@ -2,6 +2,7 @@ package com.efarmer.service;
 
 import java.util.List;
 
+import com.efarmer.PDto.CropStatusDto;
 import com.efarmer.model.CropStatus;
 
 public interface CropStatusService

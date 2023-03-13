@@ -1,5 +1,6 @@
 package com.efarmer.service;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,20 +14,43 @@ public class LoginServiceImpl implements LoginService
 {
 	@Autowired
 	private LoginDao loginDao;
+	Login cUser;
+ 
 	
 	@Override
 	public void insert(Login user) 
 	{
+		user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
 		loginDao.save(user);
-		
 	}
-
+    
 	@Override
 	public Login check(Login user) 
 	{
-		Login cUser=loginDao.checkUser(user.getEmail(),user.getPassword());
-			return cUser;
+	 cUser  = loginDao.checkUser(user.getEmail());
+	 boolean flag=BCrypt.checkpw(user.getPassword() ,cUser.getPassword());
+	  System.out.println(flag);
+	 if(flag)
+	 {
+		 	System.out.println(cUser.getEmail()+", : "+cUser.getPassword());
+		  return cUser;
+	  
+	 }
+	  else
+	  {
+		  System.out.println("User Not Found");
+		  return null;
+	  }
+	  	
 	}
+	
+	private boolean checkPass(Login user) 
+	{
+		System.out.println(user.getPassword() +"   "+ cUser.getPassword());
+		return (BCrypt.checkpw(user.getPassword() ,cUser.getPassword()));
+	}
+	
+	
 	
 	@Override
 	public Login getDetails(int id)
