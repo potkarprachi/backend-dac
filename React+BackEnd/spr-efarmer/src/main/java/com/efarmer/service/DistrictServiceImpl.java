@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.efarmer.dao.DistrictDao;
 import com.efarmer.model.District;
+import com.efarmer.model.Login;
 @Service
 public class DistrictServiceImpl implements DistrictService
 {
@@ -24,6 +25,12 @@ public class DistrictServiceImpl implements DistrictService
 	public List<District> getDistricts()
 	{
 		return districtDao.findAll();		
+	}
+
+	@Override
+	public List<Login> getUsers(int id) {
+		// TODO Auto-generated method stub
+		return districtDao.getAllCrops(id);
 	}
 
 }

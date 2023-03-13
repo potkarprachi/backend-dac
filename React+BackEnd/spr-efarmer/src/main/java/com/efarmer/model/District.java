@@ -31,8 +31,8 @@ public class District
 //	@JoinColumn(name="district")
 //	private Login login;
 	
-//	@OneToMany(mappedBy = "district")
-//	private List<Login> login;
+	@OneToMany(mappedBy = "districts")
+	private List<Login> login;
 	
 //	public List<Login> getLogin() {
 //		return login;

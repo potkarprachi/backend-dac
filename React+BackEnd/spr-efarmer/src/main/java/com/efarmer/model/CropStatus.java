@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SecondaryTable;
 
 @Entity
@@ -13,8 +15,9 @@ public class CropStatus
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int cropID;
-	@Column(name="farmerId")
-	int farmerId;
+	@ManyToOne
+	@JoinColumn(name="fk_farmer_id")
+	private Login farmerNo;
 //	@Column(name="cropId")
 //	int cropId;
 	@Column(name="cropName",length=20)
@@ -27,20 +30,9 @@ public class CropStatus
 	String status;
 	@Column(name="price")
 	float price;
-	@Column(name="customerId ")
-	int customerid;
-	
-	
-	/*
-	{
-	    "farmerId":1,
-	    "cropName":"Rice",
-	    "cropCategoryID":25,
-	    "weight":1000,
-	    "customerid":20,
-	    "price"300
-	}
-	*/
+	@ManyToOne
+	@JoinColumn(name="fk_customer_id")
+	private Login customerNo;
 	
 	
 
@@ -49,12 +41,6 @@ public class CropStatus
 	}
 	public void setPrice(float price) {
 		this.price = price;
-	}
-	public int getFarmerId() {
-		return farmerId;
-	}
-	public void setFarmerId(int farmerId) {
-		this.farmerId = farmerId;
 	}
 	public String getCropName() {
 		return cropName;
@@ -80,13 +66,30 @@ public class CropStatus
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getCustomerid() {
-		return customerid;
+	public Login getFarmerNo() {
+		return farmerNo;
 	}
-	public void setCustomerid(int customerid) {
-		this.customerid = customerid;
+	public void setFarmerNo(Login farmerNo) {
+		this.farmerNo = farmerNo;
+	}
+	public Login getCustomerNo() {
+		return customerNo;
+	}
+	public void setCustomerNo(Login customerNo) {
+		this.customerNo = customerNo;
 	}
 	public int getCropID() {
 		return cropID;
 	}
 }
+
+/*
+{
+    "farmerId":1,
+    "cropName":"Rice",
+    "cropCategoryID":25,
+    "weight":1000,
+    "customerid":20,
+    "price"300
+}
+*/

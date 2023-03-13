@@ -1,38 +1,42 @@
 package com.efarmer.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.efarmer.dao.CropStatusDao;
 import com.efarmer.dao.TransactionDao;
 import com.efarmer.model.Transaction;
+
 @Service
 public class TransactionServiceImpl implements TransactionService
 {
 	@Autowired
-	private TransactionDao trans;
-
+	TransactionDao transactionDao;
 	@Override
-	public void insert(Transaction t)
+	public void insert(Transaction t) 
 	{
-		trans.save(t);
+		t.setStatus("Paid");
+		transactionDao.save(t);
 	}
 
 	@Override
-	public List<Transaction> fetchAll() 
-	{
-		return trans.findAll();
+	public List<Transaction> fetchForCustomer(int id) {
+		// TODO Auto-generated method stub
+		return transactionDao.allCustomerTans(id);
 	}
 
 	@Override
-	public List<Transaction> fetchById(int id) 
-	{
-		return trans.findById(id);
+	public List<Transaction> fetchForFarmer(int id) {
+		// TODO Auto-generated method stub
+		return transactionDao.allFarmerTans(id);
 	}
-	
+
 	@Override
-	public List<Transaction> fetchByIdCust(int id) 
-	{
-		return trans.findByIdCustomer(id);
+	public List<Transaction> fetchAll() {
+		// TODO Auto-generated method stub
+		return transactionDao.findAll();
 	}
+
 }

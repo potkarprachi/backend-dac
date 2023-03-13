@@ -1,8 +1,5 @@
 package com.efarmer.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 import java.util.Calendar;
 
 import javax.persistence.Column;
@@ -10,55 +7,58 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+
 @Entity
 @Table(name="transactions")
 public class Transaction 
 {
 	@Id
-	@GeneratedValue(strategy =GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	int transactionId;
-	@Column(name = "amount")
+	@Column(name="amount")
 	float price;
 	@CreationTimestamp
 	@Temporal(TemporalType.DATE)
-	@Column(name = "date")
+	@Column(name="date")
 	Calendar date;
-	@Column(name = "status",length = 10)
+	@Column(name="status",length=10)
 	String status;
-	@Column(name = "farmerId")
-	int farmerId;
-	@Column(name = "customerId")
-	int customerid;
-	@Column(name = "crop")
+	@ManyToOne
+	@JoinColumn(name="fk_farmer_id")
+	private Login farmerNo;
+	@ManyToOne
+	@JoinColumn(name="fk_customer_id")
+	private Login customerNo;
+	@Column(name="crop")
 	int cropID;
-	@Column(name = "weight")
+	public CropStatus getCropStatus() {
+		return cropStatus;
+	}
+	public void setCropStatus(CropStatus cropStatus) {
+		this.cropStatus = cropStatus;
+	}
+	@Column(name="weight")
 	float weight;
 	
-
+	@OneToOne
+	@JoinColumn(name="fk_cropid")
+	private CropStatus cropStatus;
+	
 	public float getPrice() {
 		return price;
 	}
 	public void setPrice(float price) {
 		this.price = price;
-	}
-	public int getCustomerid() {
-		return customerid;
-	}
-	public void setCustomerid(int customerid) {
-		this.customerid = customerid;
-	}
-	
-	public int getCropID() {
-		return cropID;
-	}
-	public void setCropID(int cropID) {
-		this.cropID = cropID;
 	}
 	public Calendar getDate() {
 		return date;
@@ -72,14 +72,12 @@ public class Transaction
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getFarmerId() {
-		return farmerId;
+	public int getCropID() {
+		return cropID;
 	}
-	public void setFarmerId(int farmerId) {
-		this.farmerId = farmerId;
+	public void setCropID(int cropID) {
+		this.cropID = cropID;
 	}
-
-
 	public float getWeight() {
 		return weight;
 	}
@@ -89,4 +87,18 @@ public class Transaction
 	public int getTransactionId() {
 		return transactionId;
 	}
+	public Login getFarmerNo() {
+		return farmerNo;
+	}
+	public void setFarmerNo(Login farmerNo) {
+		this.farmerNo = farmerNo;
+	}
+	public Login getCustomerNo() {
+		return customerNo;
+	}
+	public void setCustomerNo(Login customerNo) {
+		this.customerNo = customerNo;
+	}
+	
+	
 }

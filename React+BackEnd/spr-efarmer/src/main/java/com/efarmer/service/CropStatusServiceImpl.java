@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.efarmer.dao.CropStatusDao;
 import com.efarmer.model.CropStatus;
+import com.efarmer.model.Login;
 
 @Service
 public class CropStatusServiceImpl implements CropStatusService
@@ -56,9 +57,9 @@ public class CropStatusServiceImpl implements CropStatusService
 	}
 
 	@Override
-	public void updateCustomer(int cropID, int customerid)
+	public void updateCustomer(int cropID, Login customer)
 	{
-		cropStatusDao.updateCustomer(cropID, customerid);
+		cropStatusDao.updateCustomer(cropID, customer.getID());
 		
 	}
 }

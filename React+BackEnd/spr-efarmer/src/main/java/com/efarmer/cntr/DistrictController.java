@@ -31,7 +31,13 @@ public class DistrictController
 	@GetMapping(value = {"/getDistrict"})
 	public List<District> getDistrictdata()
 	{
-		
+		System.out.println("Inside District");
 		return districtService.getDistricts();
+	}
+	
+	@GetMapping(value = {"/getDistrict/{id}"})
+	public List<Login> getDistrictUsers(@PathVariable("id") int id)
+	{
+		return districtService.getUsers(id);
 	}
 }

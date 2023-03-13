@@ -28,7 +28,6 @@ public class CropStatusController
 	@PostMapping(value= {"/addCrop/{id}"})
 	public void insertCrop(@RequestBody CropStatus crop,@PathVariable("id") int farmerid)
 	{
-		crop.setFarmerId(farmerid);
 		cropStatusService.insertCrop(crop);
 	}
 	@GetMapping(value = {"/getAllCropList/{id}"})

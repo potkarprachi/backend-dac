@@ -10,11 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import com.efarmer.model.CropStatus;
 import com.efarmer.model.District;
+import com.efarmer.model.Login;
 
 
 @Repository
 public interface DistrictDao extends CrudRepository<District, Integer>,JpaRepository<District, Integer>
 {
-	@Query(value = "SELECT * FROM crop_status WHERE farmer_id= :id  AND status NOT LIKE :a", nativeQuery = true)
-	List<CropStatus> getAllCrops(@Param(value="id") int id,@Param(value="a") String a);
+	@Query(value = "SELECT * FROM login WHERE district_id= :id", nativeQuery = true)
+	List<Login> getAllCrops(@Param(value="id") int id);
 }

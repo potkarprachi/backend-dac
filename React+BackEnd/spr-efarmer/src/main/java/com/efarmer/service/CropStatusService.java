@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.efarmer.PDto.CropStatusDto;
 import com.efarmer.model.CropStatus;
+import com.efarmer.model.Login;
 
 public interface CropStatusService
 {
@@ -13,5 +14,5 @@ public interface CropStatusService
 	Integer updateStatus(int id,String status);
 	List<CropStatus> getAllCrops(String status);
 	List<CropStatus> menuPageCrops(String status);
-	void updateCustomer(int cropID,int customerid);
+	void updateCustomer(int cropID,Login customer);
 }
