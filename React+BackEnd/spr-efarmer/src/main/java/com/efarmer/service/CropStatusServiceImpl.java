@@ -62,4 +62,10 @@ public class CropStatusServiceImpl implements CropStatusService
 		cropStatusDao.updateCustomer(cropID, customer.getID());
 		
 	}
+
+	@Override
+	public CropStatus getSingleCrop(int id)
+	{
+		return cropStatusDao.findByIdCrop(id);
+	}
 }

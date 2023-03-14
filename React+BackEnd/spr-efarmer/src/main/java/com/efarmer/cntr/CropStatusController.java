@@ -60,4 +60,10 @@ public class CropStatusController
 	{
 		return cropStatusService.getAllCrops("Accepted");
 	}
+	
+	@GetMapping(value = {"/getCropDetails/{id}"})
+	public CropStatus getCrop(@PathVariable("id") int id)
+	{
+		return cropStatusService.getSingleCrop(id);
+	}
 }

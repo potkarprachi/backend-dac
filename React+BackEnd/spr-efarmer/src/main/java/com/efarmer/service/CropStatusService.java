@@ -14,4 +14,5 @@ public interface CropStatusService
 	List<CropStatus> getAllCrops(String status);
 	List<CropStatus> menuPageCrops(String status);
 	void updateCustomer(int cropID,Login customer);
+	CropStatus getSingleCrop(int id);
 }
