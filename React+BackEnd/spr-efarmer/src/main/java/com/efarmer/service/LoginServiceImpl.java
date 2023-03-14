@@ -65,6 +65,29 @@ public class LoginServiceImpl implements LoginService
 		return cUser;
 		
 	}
+
+	@Override
+	public String passwordUpdate(String email,String password) {
+		System.out.println(email);
+	  Login	cUsertemp  = loginDao.checkUser(email);
+	  System.out.println(cUsertemp.getEmail());
+	  if(email.equals(cUsertemp.getEmail()))
+			{
+			System.out.println(password); 
+		        cUsertemp.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
+		        loginDao.save(cUsertemp);
+		        System.out.println(cUsertemp.getPassword());
+	          return "updated";	        
+			}
+		   else
+		  {
+			  System.out.println("password not updated");
+			  return null;
+		  }
+	}		  	
+      
+     
+	
 	
 	
 

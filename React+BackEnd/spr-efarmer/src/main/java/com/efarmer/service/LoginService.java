@@ -8,4 +8,5 @@ public interface LoginService
 	Login check(Login user);
 	Login getDetails(int id);
 	Login update(Login user);
+	String passwordUpdate(String email,String password);
 }

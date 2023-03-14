@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.efarmer.PDto.LoginDto;
+import com.efarmer.PDto.forgotpass;
 import com.efarmer.model.Login;
 import com.efarmer.service.LoginService;
 
@@ -55,6 +56,14 @@ public class LoginController
 	{
 		System.out.println(user);
 		return loginService.update(user);
+	}
+	
+	@PostMapping("/forgotpassword")
+	public String passwordUpdate(@RequestBody forgotpass user)
+	{     
+		
+		loginService.passwordUpdate(user.getEmail(),user.getPassword());
+	    return "Successfuly updated";	
 	}
 }
 
