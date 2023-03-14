@@ -84,6 +84,12 @@ public class LoginServiceImpl implements LoginService
 			  System.out.println("password not updated");
 			  return null;
 		  }
+	}
+
+	@Override
+	public Login checkEmail(String email) {
+		Login cUser = loginDao.checkEmail(email);
+		return cUser;
 	}		  	
       
      

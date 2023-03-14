@@ -18,4 +18,7 @@ public interface LoginDao extends CrudRepository<Login,Integer>,JpaRepository<Lo
 	
 	@Query(value="SELECT * FROM login WHERE id=:id",nativeQuery=true)
 	Login getInfo(@Param(value="id") int ID);
+	
+	@Query(value="SELECT * FROM login WHERE email LIKE :email",nativeQuery=true)
+	Login checkEmail(@Param(value="email") String email);
 }

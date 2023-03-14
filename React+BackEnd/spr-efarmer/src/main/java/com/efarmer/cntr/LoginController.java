@@ -65,6 +65,12 @@ public class LoginController
 		loginService.passwordUpdate(user.getEmail(),user.getPassword());
 	    return "Successfuly updated";	
 	}
+	
+	@PostMapping(value= {"/checkEmail"})
+	public Login getUserByEmail(@RequestBody Login user)
+	{
+		return loginService.checkEmail(user.getEmail());
+	}
 }
 
 
